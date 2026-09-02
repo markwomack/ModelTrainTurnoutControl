@@ -108,6 +108,16 @@ TBD
 
 ### Implemention
 TBD
+
+#### 3D design
+TBD
+
+#### Circuit board
+TBD
+
+#### Software classes
+TBD
+
 ## Design considerations
 
 ### Independent of DCC
@@ -121,3 +131,19 @@ I have reviewed some designs that used eeprom to store configuration data betwee
 eeprom (of which the Teensy 4.1 has 4K available) or on a separate eeprom chip. I have decided to utilize the SD card functionality
 of the Teensy 4.1. I think that being able to swap out the SD card and edit the configuration files directly will be an
 advantage and will make usage of the controller much easier.
+
+## Estimates of Cost
+Here is a breakdown of estimated costs of the components for this turnout controller. Add or subtract as needed for your
+specific layout. Check current prices from various sources. Most of this I have sourced from AliExpress. Prices are in US as of
+this writing (Sep 2026).
+
+- [Teensy 4.1](https://www.sparkfun.com/teensy-4-1.html): $32.00
+- Switches: ~$1.50 ea
+- Servos: ~$2.00 ea
+- Servo Controller: ~$5.00 ea
+- Relay Controller: (8 channel) ~$11.00, (16 channel) ~$20.00
+
+For my layout with 18 turnouts, the approximate cost of the hardware would be Teensy 4.1 ($32), switches ($27), servos ($36), servo
+controllers ($10), relay controllers ($30) with some room to grow and add more turnouts in the future. The total is $135. The circuit
+board and components (buttons, resistors, etc) would add some more cost. And then there is the time it will take to solder, assemble,
+configure, and test. But that's why we are in to model railroading, right?
