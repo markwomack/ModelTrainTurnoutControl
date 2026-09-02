@@ -107,7 +107,7 @@ TBD
 
 ### Independent of DCC
 I am designing this controller to be independent of DCC and it will not act as a DCC device on the layout. Beyond the
-dumb switching of frog polarity when flipping a turnout position, this controller will not be using or be available on
+"dumb" switching of frog polarity when flipping a turnout position, this controller will not be using or be available on
 the DCC bus. I might revisit this in the future, but for now I am fine with it being a separate, self-contained system
 on my layout.
 
