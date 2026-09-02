@@ -144,6 +144,6 @@ this writing (Sep 2026).
 - Relay Controller: (8 channel) ~$11.00, (16 channel) ~$20.00
 
 For my layout with 18 turnouts, the approximate cost of the hardware would be Teensy 4.1 ($32), switches ($27), servos ($36), servo
-controllers ($10), relay controllers ($30) with some room to grow and add more turnouts in the future. The total is $135. The circuit
-board and components (buttons, resistors, etc) would add some more cost. And then there is the time it will take to solder, assemble,
-configure, and test. But that's why we are in to model railroading, right?
+controllers ($10), relay controllers ($30) with some room to grow and add more turnouts in the future. The total is $135 vs $450
+if using Tourtoise controllers. The circuit board and components (buttons, resistors, etc) would add some more cost. And then there
+is the time it will take to solder, assemble, configure, and test. But that's why we are in to model railroading, right?
