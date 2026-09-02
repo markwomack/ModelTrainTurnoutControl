@@ -24,19 +24,19 @@ of the connected turnout (or paired turnouts).
 
 ### Hardware
 #### Microcontroller
-I am going to use the Arduino architecture for the primary microcontroller architecture. There are plenty of
-available designs to choose from, but the main limiting factor is the number of turnouts. Any reasonably large
-layout is going to have a fair number of turnouts. My current layout is expecting 18 turnouts. With no turnout
-pairing, that would require 18 individual switches to be monitored as well as 18 output pins for controlling relays
-for frog polarity. That quickly exceeds the number of available pins on the basic Arduino Uno. One could look at
-using the Arduino Mega instead, but I have never been a fan of the Mega. One can also look at using I2C to reduce
-the number of pins required, especially for servo and relay control. I have decided to use the 
+I am going to use the Arduino for the primary microcontroller architecture. There are plenty of
+available designs and boards to choose from, but the main limiting factor is the number of turnouts. Any
+reasonably large layout is going to have a fair number of turnouts. My current layout is expecting 18 turnouts.
+With no turnout pairing, that would require 18 individual switches to be monitored as well as 18 output pins for
+controlling relays for frog polarity. That quickly exceeds the number of available pins on the basic Arduino Uno.
+One could look at using the Arduino Mega instead, but I have never been a fan of the Mega. One can also look at
+using I2C to reduce the number of pins required, especially for servo and relay control. I have decided to use the 
 [Teensy 4.1 microcontroller](https://www.pjrc.com/store/teensy41.html). It has a fast, modern processor, lots of
 on board memory, 55 digital input/output pins, a small physical footprint, and has a built-in SD card port. It can
-even support Ethernet if that is desired in the future. It does require 3.3v for all of its pins, so that is a conderation
-when evaluating other components. It should be plenty of power for this implementation, with
+even support Ethernet if that is desired in the future. It does require 3.3v for all of its pins, so that is a
+consideration when evaluating other components. The Teensy 4.1 should be plenty of power for this implementation, with
 room to expand. Some design choices are going to be influenced by this architecture decision, so if you decide to
-use a different microcontroller, changing the code will be an issue.
+use a different microcontroller, changing the code will probably be required.
 
 #### Servo
 I have opted for the [MG90S 9g Servo](https://www.aliexpress.us/item/3256806032951610.html) with all metal gears.
@@ -48,9 +48,9 @@ will be about the 90 degree servo position.
 
 #### Servo Controller
 I am currently designing with the [16 Channel 12-bit PWM Servo Motor Driver LU9685 Driver servo controller](https://www.aliexpress.us/item/3256806206560666.html) in mind.
-It uses I2C to control up to 16 servos per board, is very affordable, and there is an existing Arduino library available
-on GitHub. The 5V used to control the servos can be isolated from the voltage used for the I2C
-communication, so 3.3v can be used.
+It uses I2C to control up to 16 servos per board, with multiple boards possible with different addresses. It is very
+affordable, and there is an existing Arduino library available on GitHub. The 5v power used to control the servos is
+isolated from the power used for the I2C communication, so 3.3v can be used.
 
 The other option is the [PCA9685 controller board](https://www.aliexpress.us/item/3256810335083711.html) which is also
 very popular and comparable. Choosing one over the other should not affect the overall architecture as the controller
@@ -58,7 +58,7 @@ can be contained in the underlying code with the expected functional API to be t
 not be difficult to replace the LU9685 implementation with a PCA9685 implementation.
 
 #### Relay Controller
-For controlling the frog polarity, I have opted to use Optocoupler relays instead of physical limit switches mounted with
+For controlling the frog polarity, I have opted to use optocoupler relays instead of physical limit switches mounted with
 the servo. There are some nice designs out there that will activate switches as the servo position is changed, and thus
 change the polarity that is run through the switch. However, in running some tests on a prototype, the amount of position
 change required for my N scale turnouts is actually very small. And I don't want to fiddle with the position of a switch
@@ -67,14 +67,19 @@ control the polarity by flipping a relay one way or the other.
 
 The relay controller I am designing for is the [XL9535 8 or 16 Channel Expansion Optocoupler Isolation Board](https://www.aliexpress.us/item/3256806206560666.html).
 I chose this controller because it can handle up to 10A per relay, more than enough for most DCC setups, and certainly
-enough for mine. It supports I2C communication, so multiple boards cane be used on a layout. It comes in 8 or 16 channels so you
-can mix and match however many you may need. The 5V used to control the relays can be isolated from the voltage used for the I2C
-communication, so 3.3v can be used.
+enough for mine. It supports I2C communication, and multiple boards with different addresses can be used on a layout. 
+It comes in 8 or 16 channels so you can mix and match however many you may need. The 5V used to control the relays can
+be isolated from the voltage used for the I2C communication, so 3.3v can be used.
+
+#### Switch
+I am using simple [2 Pin Toggle ON/OFF SPST](https://www.aliexpress.us/item/3256809116496659.html) switches to toggle the
+position of the turnout(s). These are very cheap to buy and they won't need to carry much voltage since they will be connected
+directly to the microcontroller using 3.3v.
 
 ### Software
-The software to run the controller will be developed using the Arduino IDE. Development using built-in and support libraries
-will be used. The main execution will be an Arduino sketch that is meant to be generally useful, but can be modified to match
-a specific layout if need be. The main configuration of the software will be in the two configuration files mentioned earlier.
+The software to run the controller will be developed using the Arduino IDE. Development will use built-in and support libraries
+The main execution will be an Arduino sketch that is meant to be generalized for different uses, but can be modified to match
+a specific layout if need be. The main configuration of the controller will be in the two configuration files mentioned earlier.
 
 #### Libraries
 These libraries will be required in the development and compilation of the controller software.
