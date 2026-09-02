@@ -79,18 +79,30 @@ a specific layout if need be. The main configuration of the software will be in 
 #### Libraries
 These libraries will be required in the development and compilation of the controller software.
 
-##### [ArduinoLogging](https://github.com/markwomack/ArduinoLogging/tree/main)
+##### [ArduinoLogging](https://github.com/markwomack/ArduinoLogging)
 ArduinoLogging is used to log debugging information to serial for debugging purposes.
 
-##### [TaskManager](https://github.com/markwomack/TaskManager/tree/main)
+##### [TaskManager](https://github.com/markwomack/TaskManager)
 TaskManager is used as a lightweight task management system to control the various behaviors of the controller.
 
-##### [LU9685](https://github.com/eleboys/LU9685/tree/main)
+##### [LU9685](https://github.com/eleboys/LU9685)
 LU9685 is used to control the LU9685 servo controller.
 
-##### [TCA9555](https://github.com/RobTillaart/TCA9555/tree/master)
+##### [TCA9555](https://github.com/RobTillaart/TCA9555)
 TCA9555 is used to control the TCA9535 relay controller.
 
+##### [ArduinoStreamUtils](https://github.com/bblanchon/ArduinoStreamUtils)
+ArduinoStreamUtils is used to ease the reading and writing of streams of data.
+
+##### [Teensy Development](https://www.pjrc.com/teensy/td_download.html)
+The development environment for Teensy boards will need to be installed in the Arduino IDE. This can be achieved directly
+in the Arduino 2.X.X IDE or can be performed manually for older IDE versions.
+
+### Configuration
+TBD
+
+### Implemention
+TBD
 ## Design considerations
 
 ### Independent of DCC
